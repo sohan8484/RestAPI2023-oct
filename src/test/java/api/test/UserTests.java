@@ -4,9 +4,11 @@ import api.endpoints.UserEndpoints;
 import api.payload.User;
 import io.restassured.response.Response;
 import org.junit.Assert;
-import org.junit.BeforeClass;
+
 import com.github.javafaker.Faker;
-import org.junit.Test;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
 
 public class UserTests {
     Faker faker;
@@ -29,5 +31,11 @@ public class UserTests {
         Response res = UserEndpoints.createUser(userPayload);
         res.then().log().all();
         Assert.assertEquals(res.getStatusCode(),200);
+    }
+    @Test(priority = 2)
+    public void testGetUserByName(){
+        Response response = UserEndpoints.readUser(this.userPayload.getUsername());
+        response.then().log().all();
+        Assert.assertEquals(response.statusCode(), 200);
     }
 }

@@ -1,5 +1,6 @@
 package api.endpoints;
 
+import api.payload.User;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
@@ -7,7 +8,7 @@ import static io.restassured.RestAssured.*;
 
 //this is userendpoints which is created for CRUD operations
 public class UserEndpoints {
-    public static Response createUser(payload){
+    public static Response createUser(User payload){
         Response res = given()
                 .contentType(ContentType.JSON).accept(ContentType.JSON)
                 .body(payload)
